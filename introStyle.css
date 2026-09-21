@@ -1,0 +1,33 @@
+h1 {
+    color: white;
+    font-size: 50px;
+}
+
+p {
+    color: white;
+}
+
+body {
+    display: grid;
+    place-items: center;
+}
+
+.carImage {
+    border-radius: 10%;
+    object-fit: cover;
+    border: 10px solid;
+}
+
+.githubLogo {
+    object-fit: cover;
+    max-width: 40px;
+    position: absolute; 
+    top: 0;     
+    right: 0; 
+    padding: 10px 10px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.githubLogo:hover {
+    transform: scale(1.1);
+}
