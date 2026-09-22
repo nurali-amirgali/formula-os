@@ -1,17 +1,23 @@
 body {
     background-color: #51565b; 
-    background-image: url(./f1-wallpaper.jpeg); 
+    background-image: url(./mercedesCornerWallpaper.jpg); 
     background-size: cover;
 }
 
 #topBar {
-    position: absolute; 
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    
     width: 100%; 
-    display: flex; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
     backdrop-filter: blur(10px); 
     background-color: rgba(0, 0, 0, 0.25); 
     color: #fff; 
-    justify-content: space-between;
 }
 
 #timeElement {
@@ -22,13 +28,15 @@ body {
 }
 
 .windowHeader {
-    width: 100%; 
-    display: flex; 
-    align-items: center; 
+    width: 107.5%; 
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     cursor: move; 
     justify-content: center; 
-    margin-top: 8px; 
-    background-color: grey;
+    margin: -26px 0px 0px -17px; 
+    padding: 0px 0;
+    background-color: rgb(102, 102, 102, 0);
 }
 
 .windowCloseButton {
@@ -38,11 +46,27 @@ body {
     background-color: #EC6B5E; 
     border-radius: 16px; 
     border: solid 1px rgba(0, 0, 0, 0.25); 
-    margin-left: 6px;
+    margin-left: 3px;
+    justify-self: start;
 }
 
 .windowTitle {
-    margin: 0px; color: #000000; font-weight: 500
+    margin: 0px; 
+    color: #ffffff; 
+    font-weight: 1000;
+    justify-self: center;
+}
+
+#centerClock {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#centerClockText {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 100px;
 }
 
 .window {
@@ -54,11 +78,37 @@ body {
     top: 50%; 
     left: 50%; 
     transform: translate(-50%, -50%); 
-    background-color: rgb(255, 255, 255)
+    border-color: rgb(102, 102, 102, 0);
+    border-width: 15px 2px 2px 2px;
+    background-color: rgb(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px); 
 }
 
 .osName {
     color: rgb(255, 255, 255);
+}
+
+.appIconDiv {
+    text-align: center; 
+    padding: 16px; 
+    filter: drop-shadow(0 0 8px black); 
+    width: fit-content
+}
+
+.appIconImgDiv {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 16px; 
+    background-color: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.appIconImg {
+    width: 28px; 
+    height: 28px; 
+    border-radius: 12px;
 }
 
 .closebutton {
@@ -69,4 +119,8 @@ body {
   border-radius: 16px;
   border: solid 1px rgba(0, 0, 0, 0.25);
   margin-left: 6px;
+}
+
+.selected {
+    transform: scale(1.05);
 }

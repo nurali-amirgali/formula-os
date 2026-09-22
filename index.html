@@ -1,17 +1,27 @@
 <!DOCTYPE html> 
-<head>
-  <script type="module" src="./script.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
 <html>
+    <head>
+        <script type="module" src="./script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
     <body>
-        <div id="topBar"></div>
-            <p id="welcomeopen" class="osName">
-                FormulaOS
-            </p style="color: white;">
-            <p id="timeElement">
-                LOADING TIME!
-            </p>
+        <div id="topBar">
+            <div class="appIconDiv" id="stopwatchIcon">
+                <div class="appIconImgDiv">
+                    <img src="./clock.png" class="appIconImg">
+                </div>
+                <p style="margin: 0px; color: #fff;">clock</p>
+            </div>
+            <div class="appIconDiv" id="welcomeIcon">
+                <div class="appIconImgDiv">
+                    <img src="./about.png" class="appIconImg"> 
+                </div>
+                <p style="margin: 0; color: #fff;">about</p>
+            </div>
+        </div>
+
+        <div id="centerClock">
+            <h1 id="centerClockText">10:32PM</h1>
         </div>
 
         <div id="welcome" class="window">
@@ -19,10 +29,23 @@
                 <div id="welcomeclose" class="windowCloseButton"></div>
                 <p class="windowTitle">Welcome</p>
             </div>
-            <h1>Welcome to my OS</h1 style="padding: 0px;">
-            <p>It is a simple os with a formula 1 theme made for the webOS 1 mission</p>
+            <h1 style="color: white;">Welcome to my OS</h1>
+            <p style="color: white;">It is a simple os with a formula 1 theme made for the webOS 1 mission</p>
             <img src="introCar.jpeg" alt="car" style="width: 450px; border-radius: 16px; object-fit: cover;"/>
-            <a href="https://github.com/nurali-amirgali">GITHUB</a>
+            <br>
+            <a href="https://github.com/nurali-amirgali">!MY GITHUB!</a>
         </div>
+
+        <div class="window" id="stopwatch" style="top: calc(50%); left: calc(50%); display: none;">
+            <div class="windowHeader" id="stopwatchHeader">
+                    <div class="windowCloseButton" id="stopwatchclose"></div>
+                <p class="windowTitle">Stopwatch</p>
+                <div style="width: 16px; margin-right: 6x; height: 16px;"></div>
+            </div>
+            <div style="background-color: #fff; margin: 6px; border-radius: 12px; width: 520px; height: 480px; padding: 16px;">
+            <p>Stopwatch</p>
+        </div>
+    </div>
+
     </body>
 </html>
