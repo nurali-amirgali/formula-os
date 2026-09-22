@@ -1,0 +1,72 @@
+body {
+    background-color: #51565b; 
+    background-image: url(./f1-wallpaper.jpeg); 
+    background-size: cover;
+}
+
+#topBar {
+    position: absolute; 
+    width: 100%; 
+    display: flex; 
+    backdrop-filter: blur(10px); 
+    background-color: rgba(0, 0, 0, 0.25); 
+    color: #fff; 
+    justify-content: space-between;
+}
+
+#timeElement {
+    margin-right: 16px; 
+    background-color: rgba(256, 256, 256, 0.125); 
+    padding: 4px 12px; 
+    border-radius: 16px;
+}
+
+.windowHeader {
+    width: 100%; 
+    display: flex; 
+    align-items: center; 
+    cursor: move; 
+    justify-content: center; 
+    margin-top: 8px; 
+    background-color: grey;
+}
+
+.windowCloseButton {
+    width: 16px; 
+    height: 16px; 
+    cursor: pointer; 
+    background-color: #EC6B5E; 
+    border-radius: 16px; 
+    border: solid 1px rgba(0, 0, 0, 0.25); 
+    margin-left: 6px;
+}
+
+.windowTitle {
+    margin: 0px; color: #000000; font-weight: 500
+}
+
+.window {
+    border: solid; 
+    width: fit-content; 
+    padding: 16px; 
+    border-radius: 15px; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: rgb(255, 255, 255)
+}
+
+.osName {
+    color: rgb(255, 255, 255);
+}
+
+.closebutton {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background-color: #EC6B5E;
+  border-radius: 16px;
+  border: solid 1px rgba(0, 0, 0, 0.25);
+  margin-left: 6px;
+}
