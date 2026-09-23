@@ -1,3 +1,4 @@
+//change the clocks text every second
 function updateTime() {
     var currentTime = new Date().toLocaleTimeString([], {
         hour: '2-digit',
@@ -9,130 +10,110 @@ function updateTime() {
 }
 setInterval(updateTime, 1000);
 
-// Make the DIV element draggable:
 dragElement(document.getElementById("welcome"));
-dragElement(document.getElementById("stopwatch"))
+dragElement(document.getElementById("stopwatch"));
 
-// Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
-    // Step 2: Set up variables to keep track of the element's position.
-    var initialX = 0;
-    var initialY = 0;
-    var currentX = 0;
-    var currentY = 0;
+  var initialX = 0;
+  var initialY = 0;
+  var currentX = 0;
+  var currentY = 0;
+  var header = document.getElementById(element.id + "Header");
+  if (header) {
+    header.onmousedown = startDragging;
+  } else { 
+    element.onmousedown = startDragging;
+  }
 
-    var header = document.getElementById(element.id + "Header");
-    if (header) {
-        header.onmousedown = startDragging;
-    } else {
-        element.onmousedown = startDragging;
-    }
+  function startDragging(e) {
+    e.preventDefault(); //we prevent the default action of the browser like selecting text or soemthing else
+    //save where the browser started dragging
+    initialX = e.clientX; 
+    initialY = e.clientY
+    //we asign the stop dragging function so it runs when the mouse is released. 
+    //we also asign the element drag function on every movement of the mouse to update the windows position every time
+    document.onmouseup = stopDragging;
+    document.onmousemove = elementDrag;
+  }
 
-    // Step 6: Define the `startDragging` function to capture the initial mouse position and set up event listeners.
-    function startDragging(e) {
-      e = e || window.event;
-      e.preventDefault();
-      // Step 7: Get the mouse cursor position at startup.
-      initialX = e.clientX;
-      initialY = e.clientY;
-      // Step 8: Set up event listeners for mouse movement (`elementDrag`) and mouse button release (`closeDragElement`).
-      document.onmouseup = stopDragging;
-      document.onmousemove = elementDrag;
-    }
+  function elementDrag(e) {
+    e.preventDefault(); //prevent the default behaviour again
 
-    // Step 9: Define the `elementDrag` function to calculate the new position of the element based on mouse movement.
-    function elementDrag(e) {
-      e = e || window.event;
-      e.preventDefault();
-      // Step 10: Calculate the new cursor position.
-      currentX = initialX - e.clientX;
-      currentY = initialY - e.clientY;
-      initialX = e.clientX;
-      initialY = e.clientY;
-      // Step 11: Update the element's new position by modifying its `top` and `left` CSS properties.
-      element.style.top = (element.offsetTop - currentY) + "px";
-      element.style.left = (element.offsetLeft - currentX) + "px";
-    }
+    //subtract the current position from the inital to find how far we have moved
+    currentX = initialX - e.clientX;
+    currentY = initialY - e.clientY;
 
-    // Step 12: Define the `stopDragging` function to stop tracking mouse movement by removing the event listeners.
-    function stopDragging() {
-      document.onmouseup = null;
-      document.onmousemove = null;
-    }
+    //we set this as the initial now
+    initialX = e.clientX;
+    initialY = e.clientY;
+
+    //set the new position
+    element.style.top = (element.offsetTop - currentY) + "px";
+    element.style.left = (element.offsetLeft - currentX) + "px";
+  }
+
+  //once the mouse is released we set these two to null so the elementdrag and stopdragging are no longer called
+  function stopDragging() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }
 
-var welcomeScreen = document.querySelector("#welcome")
-
+//to close the window we just set its display to none so its no longer visible
 function closeWindow(element) {
   element.style.display = "none"
 }
 
+//we get the actual window and the close button for each and attach the button to the close window function
+var welcomeScreen = document.querySelector("#welcome")
 var welcomeScreenClose = document.querySelector("#welcomeclose")
 
-var welcomeScreenOpen = document.querySelector("#welcomeopen")
-
-welcomeScreenClose.addEventListener("click", function() {
-  closeWindow(welcomeScreen);
-});
+welcomeScreenClose.addEventListener("click", () => closeWindow(welcomeScreen));
 
 var stopwatchScreen = document.querySelector("#stopwatch")
-
 var stopwatchScreenClose = document.querySelector("#stopwatchclose")
 
 stopwatchScreenClose.addEventListener("click", () => closeWindow(stopwatchScreen));
 
+//App selection code
 var selectedIcon = undefined
 
+//we assign the selected icon the selected class and set it as the selected icon
+//giving it the class allows us to do things like enlarge it or highlight it
 function selectIcon(element) {
   element.classList.add("selected");
   selectedIcon = element
 } 
 
-var biggestIndex = 1;
-
-function addWindowTapHandling(element) {
-  element.addEventListener("mousedown", () =>
-    handleWindowTap(element)
-  )
-}
-
-function handleWindowTap(element) {
-  biggestIndex++;  
-  element.style.zIndex = biggestIndex;
-}
-
 function openWindow(element) {
   element.style.display = "block";
-  biggestIndex++;  
-  element.style.zIndex = biggestIndex;
 }
 
 var stopwatchIcon = document.querySelector("#stopwatchIcon");
 var welcomeIcon = document.querySelector("#welcomeIcon");
+var githubIcon = document.querySelector("#githubIcon");
+var f1Icon = document.querySelector("#f1Icon");
 
-stopwatchIcon.addEventListener("dblclick", function() {
-  openWindow(stopwatchScreen);
-});
+//attach all the listeners
+welcomeIcon.addEventListener("dblclick", () => openWindow(welcomeScreen));
+welcomeIcon.addEventListener("click", () => handleIconTap(welcomeIcon));
 
-welcomeIcon.addEventListener("dblclick", function() {
-  openWindow(welcomeScreen);
-});
+stopwatchIcon.addEventListener("dblclick", () => openWindow(stopwatchScreen));
+stopwatchIcon.addEventListener("click", () => handleIconTap(stopwatchIcon));
 
-welcomeIcon.addEventListener("click", function() {
-  handleIconTap(welcomeIcon);
-});
+githubIcon.addEventListener("dblclick", () => window.open("https://github.com/nurali-amirgali", "_blank"));
+githubIcon.addEventListener("click", () => handleIconTap(githubIcon));
 
-stopwatchIcon.addEventListener("click", function() {
-  handleIconTap(stopwatchIcon);
-});
+f1Icon.addEventListener("dblclick", () => window.open("https://www.formula1.com", "_blank"));
+f1Icon.addEventListener("click", () => handleIconTap(f1Icon));
 
+//if the element actually exists then remove the selected class and remove the selected icon
 function deselectIcon(element) {
-  if (element) {
-    element.classList.remove("selected");
-  }
+  if (element) element.classList.remove("selected");
   selectedIcon = undefined;
 }
 
+//if its selected then deselect it otherwise select the icon
 function handleIconTap(element) {
   if (element.classList.contains("selected")) {
     deselectIcon(element);
@@ -144,13 +125,15 @@ function handleIconTap(element) {
   }
 }
 
-addWindowTapHandling(welcomeScreen);
-addWindowTapHandling(stopwatchScreen);
 
+//there is 100% a way to make this with less variables but i have yet to find it so this is fine for now
 var isTimerOn = false;
 var isPaused = false;
+
 var startTime = Date.now();
 var timeNow = Date.now();
+var pauseTime = Date.now()
+
 var timerText = document.querySelector("#stopwatchTimer");
 var startButton = document.querySelector("#startPauseButton");
 var resetButton = document.querySelector("#resetButton");
@@ -158,25 +141,32 @@ var resetButton = document.querySelector("#resetButton");
 function timeStopwatch(){
     if (!isTimerOn || isPaused) return;
     timeNow = Date.now() - startTime;
-    timerText.textContent = new Date(timeNow).toISOString().slice(14, 23);
+    timerText.textContent = new Date(timeNow).toISOString().slice(14, 23); //convert it into the mm:ss:msmsms format
     requestAnimationFrame(timeStopwatch);
 }
 
+//if the start button is clicked we check if its paused or the timer is not on
 startButton.addEventListener("click", function() {
-    if (!isTimerOn || isPaused) {
-        isTimerOn = true;
-        if (!isPaused) {
-            startTime = Date.now();
-        }
-        isPaused = false;
-        startButton.textContent = "pause";
-        timeStopwatch();
+  if (!isTimerOn || isPaused) {
+    //if its not running then turn it on and if its not paused then reset the timer
+    isTimerOn = true;
+    if (!isPaused) {
+      startTime = Date.now();
     }else{
-        isPaused = true;
-        startButton.textContent = "resume";
+      startTime = Date.now() - (pauseTime - startTime)
     }
+    isPaused = false;
+    startButton.textContent = "pause";
+    timeStopwatch(); //start the stopwatch loop
+  }else{
+      //otherwise pause it
+      pauseTime = Date.now()
+      isPaused = true;
+      startButton.textContent = "resume";
+  }
 });
 
+//if the button is clicked then reset all the starts and turn off the timer
 resetButton.addEventListener("click", function() {
     if (isTimerOn) {
         isTimerOn = false;
