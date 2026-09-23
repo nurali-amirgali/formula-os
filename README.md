@@ -1,6 +1,7 @@
 # FormulaOS
 FormulaOS is a simple webos with a formula 1 theme. It has draggable windows and features a simple stopwatch to time laps. 
-
+\
+**CHECK IT OUT HERE: https://nurali-amirgali.github.io/formula-os/** \
 I never usually code in javascript/html/css so this was pretty difficult for me.
 
 ## Features
