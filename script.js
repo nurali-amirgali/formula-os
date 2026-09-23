@@ -146,3 +146,42 @@ function handleIconTap(element) {
 
 addWindowTapHandling(welcomeScreen);
 addWindowTapHandling(stopwatchScreen);
+
+var isTimerOn = false;
+var isPaused = false;
+var startTime = Date.now();
+var timeNow = Date.now();
+var timerText = document.querySelector("#stopwatchTimer");
+var startButton = document.querySelector("#startPauseButton");
+var resetButton = document.querySelector("#resetButton");
+
+function timeStopwatch(){
+    if (!isTimerOn || isPaused) return;
+    timeNow = Date.now() - startTime;
+    timerText.textContent = new Date(timeNow).toISOString().slice(14, 23);
+    requestAnimationFrame(timeStopwatch);
+}
+
+startButton.addEventListener("click", function() {
+    if (!isTimerOn || isPaused) {
+        isTimerOn = true;
+        if (!isPaused) {
+            startTime = Date.now();
+        }
+        isPaused = false;
+        startButton.textContent = "pause";
+        timeStopwatch();
+    }else{
+        isPaused = true;
+        startButton.textContent = "resume";
+    }
+});
+
+resetButton.addEventListener("click", function() {
+    if (isTimerOn) {
+        isTimerOn = false;
+        isPaused = false;
+        startButton.textContent = "start";
+        timerText.textContent = "00:00.000"
+    }
+});

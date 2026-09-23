@@ -124,3 +124,37 @@ body {
 .selected {
     transform: scale(1.05);
 }
+
+#stopwatchContainer {
+    background-color: #1e1c1c; 
+    margin: 6px; 
+    border-radius: 12px; 
+    width: 480px; 
+    height: 350px; 
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#stopwatchTimer {
+    color: white;
+    font-size: 80px;
+}
+
+#startPauseButton {
+    padding: 12px 24px; 
+    font-size: 26px;
+}
+
+#resetButton {
+    padding: 12px 24px; 
+    font-size: 26px;
+}
+
+#buttonContainer {
+    display: flex;
+    gap: 10px;
+}
